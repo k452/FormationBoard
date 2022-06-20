@@ -1,5 +1,5 @@
 import React from 'react'
-import { useInteractJS } from '../hooks'
+import { useInteractJS } from 'hooks/interact'
 
 const Circle: React.FC = () => {
   let marginLeft = '60px'
@@ -61,8 +61,8 @@ const Circle: React.FC = () => {
             ref={interact.ref}
             style={{
               ...interact.style,
-              marginLeft,
-              marginTop,
+              marginLeft: `${marginLeft}`,
+              marginTop: `${marginTop}`,
               width: '60px',
               height: '60px',
               borderRadius: '50%',
