@@ -1,14 +1,28 @@
 import React from 'react'
-import { useInteractJS } from 'hooks/interact'
+import useInteractJS from 'hooks/interact'
+
+const NumOfPlayer = 11
+
+const isUndefined = (arg: interactType | undefined): arg is undefined =>
+  arg === undefined
 
 const Circle: React.FC = () => {
-  let marginLeft = '60px'
-  let marginTop = '60px'
+  let marginLeft = '0px'
+  let marginTop = '0px'
+
+  const interacts: interactType[] = []
+
+  const copyInteract = (callBack: () => interactType) => {
+    for (let i = 0; i < NumOfPlayer; i += 1) {
+      interacts.push(callBack())
+    }
+  }
+
+  copyInteract(useInteractJS)
+
   return (
     <>
-      {[...Array(11).keys()].map((i) => {
-        const interact = useInteractJS()
-
+      {[...Array(NumOfPlayer).keys()].map((i) => {
         if (i === 0) {
           // GK
           marginLeft = '7%'
@@ -55,12 +69,26 @@ const Circle: React.FC = () => {
           marginTop = '40%'
         }
 
+        const tmpInteract = interacts[i]
+
+        if (isUndefined(tmpInteract)) {
+          return (
+            <div
+              key={i}
+              style={{
+                width: '0px',
+                height: '0px',
+              }}
+            />
+          )
+        }
+
         return (
           <div
             key={i}
-            ref={interact.ref}
+            ref={tmpInteract.ref}
             style={{
-              ...interact.style,
+              ...tmpInteract.style,
               marginLeft: `${marginLeft}`,
               marginTop: `${marginTop}`,
               width: '60px',

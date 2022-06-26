@@ -3,6 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  ignorePatterns: [
+    '.eslintrc.js',
+    'next-env.d.ts',
+    'next.config.js',
+    'postcss.config.js',
+    'tailwind.config.js',
+  ],
   extends: [
     'plugin:react/recommended',
     'airbnb',
@@ -13,22 +20,18 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'prettier',
-    'next'
+    'next',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    'project': './tsconfig.json',
+    project: './tsconfig.json',
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'import'
-  ],
+  plugins: ['react', '@typescript-eslint', 'import'],
   rules: {
     // 廃止になったルールをoff
     'react/jsx-uses-react': 'off',
@@ -49,11 +52,11 @@ module.exports = {
       'error',
       'ignorePackages',
       {
-        'js': 'never',
-        'jsx': 'never',
-        'ts': 'never',
-        'tsx': 'never'
-      }
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
     ],
 
     // _ をファイル名に許可
@@ -63,24 +66,27 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
 
     // Linkコンポーネントのエラー回避
-    'jsx-a11y/anchor-is-valid': [ 'error', {
-      'components': [ 'Link' ],
-      'specialLink': [ 'hrefLeft', 'hrefRight' ],
-      'aspects': [ 'invalidHref', 'preferButton' ]
-    }],
-            
+    'jsx-a11y/anchor-is-valid': [
+      'error',
+      {
+        components: ['Link'],
+        specialLink: ['hrefLeft', 'hrefRight'],
+        aspects: ['invalidHref', 'preferButton'],
+      },
+    ],
+
     // JSX not allowed in files with extension '.tsx' を回避
-    'react/jsx-filename-extension': ['error', { 'extensions': ['.jsx', '.tsx'] }],
-    
+    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+
     // セミコロン
-    'semi': ['error', 'never', {'beforeStatementContinuationChars': 'never'}],
-    'semi-spacing': ['error', {'after': true, 'before': false}],
+    semi: ['error', 'never', { beforeStatementContinuationChars: 'never' }],
+    'semi-spacing': ['error', { after: true, before: false }],
     'semi-style': ['error', 'first'],
     'no-extra-semi': 'error',
     'no-unexpected-multiline': 'error',
     'no-unreachable': 'error',
 
     // クォーテーション
-    'quotes': ['error', 'single']    
+    quotes: ['error', 'single'],
   },
-};
+}
